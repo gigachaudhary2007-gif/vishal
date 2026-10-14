@@ -138,6 +138,64 @@ textarea:focus-visible {
 @media(prefers-reduced-motion:reduce){.chronos-welcome *, .chronos-welcome *::before,.chronos-welcome *::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.welcome-hero.is-reduced .rv{opacity:1;transform:none;filter:none}}
 .welcome-hero.is-reduced .hero-word { opacity:.9; letter-spacing:-.01em; }
 
+/* Image motion stays gentle and decorative, while respecting the page's motion preference. */
+.dock-cell img { animation: dock-image-drift 7s ease-in-out infinite; }
+.dock-cell:nth-child(2) img { animation-delay: -2.3s; }
+.dock-cell:nth-child(3) img { animation-delay: -4.6s; }
+@keyframes dock-image-drift {
+  0%, 100% { filter: saturate(.92); transform: translateY(0) scale(1); }
+  50% { filter: saturate(1.08); transform: translateY(-3px) scale(1.035); }
+}
+
+/* Focused sign-in surface uses the same warm, layered glass language as the planner. */
+.login-screen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 12%, rgb(95 212 232 / 13%), transparent 34%),
+    radial-gradient(ellipse at 88% 83%, rgb(240 82 74 / 12%), transparent 32%),
+    linear-gradient(145deg, #06152a, #071a33 52%, #0b2340);
+}
+.login-screen::before,
+.login-screen::after {
+  position: absolute;
+  z-index: -1;
+  width: min(48vw, 560px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(237 234 227 / 8%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+  animation: login-orbit 24s linear infinite;
+}
+.login-screen::before { top: -25%; left: -19%; box-shadow: 0 0 0 36px rgb(237 234 227 / 2%), 0 0 0 72px rgb(237 234 227 / 2%); }
+.login-screen::after { right: -24%; bottom: -44%; width: min(56vw, 660px); animation-direction: reverse; }
+.login-card {
+  border-color: rgb(237 234 227 / 15%);
+  background: linear-gradient(145deg, rgb(18 43 70 / 82%), rgb(9 27 49 / 75%));
+  box-shadow: 0 30px 90px rgb(0 0 0 / 34%), inset 0 1px 0 rgb(255 255 255 / 13%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+  backdrop-filter: blur(24px) saturate(125%);
+}
+.login-brand,.login-switch { color: #79dceb; }
+.login-field { display: grid; gap: 7px; color: #d6e0e9; font-size: 13px; font-weight: 600; }
+.login-field input {
+  min-height: 48px;
+  border-color: rgb(237 234 227 / 14%);
+  background: rgb(2 14 29 / 44%);
+  color: #fffdf7;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+.login-field input::placeholder { color: #91a2b5; }
+.login-field input:focus { border-color: #70d5e6; background: rgb(2 14 29 / 68%); box-shadow: 0 0 0 3px rgb(95 212 232 / 14%); }
+.login-secondary { border-color: rgb(237 234 227 / 16%); background: rgb(237 234 227 / 4%); transition: background-color 180ms ease, border-color 180ms ease; }
+.login-primary { background: linear-gradient(110deg, #ef6559, #ff9277); color: #fffaf5; box-shadow: 0 9px 25px rgb(240 82 74 / 20%); transition: transform 180ms ease, filter 180ms ease; }
+.login-primary:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); }
+.login-status { border: 1px solid rgb(95 212 232 / 20%); background: rgb(95 212 232 / 8%); color: #d9f4f6; }
+@keyframes login-orbit { to { transform: rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .dock-cell img,.login-screen::before,.login-screen::after { animation:none!important; } }
+
 /* Homepage feature cards */
 .log-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:auto; gap:18px; }
 .chronos-welcome .feature-card { min-height:260px; padding:26px 28px; border:1px solid rgba(237,234,227,.14); border-radius:24px; transition:opacity .8s cubic-bezier(.2,.7,.1,1),transform .8s cubic-bezier(.2,.7,.1,1),border-color .25s ease,box-shadow .25s ease; }
