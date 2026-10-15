@@ -84,16 +84,16 @@ async function handleGoogleLogin() {
 
 
   return (
-    <main className="login-screen flex min-h-screen items-center justify-center px-4 py-10 text-white">
-      <section className="login-card w-full max-w-md rounded-[28px] border p-8 sm:p-9">
+    <main className="flex min-h-screen items-center justify-center bg-neutral-950 px-4 text-white">
+      <section className="w-full max-w-md rounded-2xl border border-white/10 bg-white/[0.04] p-8 shadow-2xl">
         <div className="mb-8 text-center">
-          <p className="login-brand text-sm tracking-[0.3em]">
+          <p className="text-sm tracking-[0.3em] text-violet-300">
             CHRONOS
           </p>
           <h1 className="mt-3 text-3xl font-semibold">
             {mode === "login" ? "Welcome back" : "Create your account"}
           </h1>
-          <p className="mt-2 text-sm text-white/70">
+          <p className="mt-2 text-sm text-neutral-400">
             Timetable intelligence for your campus.
           </p>
         </div>
@@ -102,7 +102,7 @@ async function handleGoogleLogin() {
           type="button"
           onClick={handleGoogleLogin}
           disabled={loading}
-          className="login-secondary w-full rounded-xl border px-4 py-3 hover:bg-white/10 disabled:opacity-50"
+          className="w-full rounded-xl border border-white/15 px-4 py-3 hover:bg-white/10 disabled:opacity-50"
         >
           Continue with Google
         </button>
@@ -114,8 +114,6 @@ async function handleGoogleLogin() {
         </div>
 
         <form onSubmit={handleEmailAuth} className="space-y-4">
-          <label className="login-field">
-            <span>College email</span>
           <input
             type="email"
             autoComplete="email"
@@ -123,11 +121,9 @@ async function handleGoogleLogin() {
             placeholder="College email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border px-4 py-3 outline-none"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-violet-400"
           />
-          </label>
-          <label className="login-field">
-            <span>Password</span>
+
           <input
             type="password"
             autoComplete={
@@ -138,14 +134,13 @@ async function handleGoogleLogin() {
             placeholder="Password (at least 8 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border px-4 py-3 outline-none"
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-violet-400"
           />
-          </label>
 
           <button
             type="submit"
             disabled={loading}
-            className="login-primary w-full rounded-xl px-4 py-3 font-semibold disabled:opacity-50"
+            className="w-full rounded-xl bg-violet-600 px-4 py-3 font-medium hover:bg-violet-500 disabled:opacity-50"
           >
             {loading
               ? "Please wait..."
@@ -156,7 +151,7 @@ async function handleGoogleLogin() {
         </form>
 
         {message && (
-          <p role="status" className="login-status mt-4 rounded-xl px-4 py-3 text-sm">
+          <p role="status" className="mt-4 text-sm text-violet-200">
             {message}
           </p>
         )}
@@ -171,7 +166,7 @@ async function handleGoogleLogin() {
               setMode(mode === "login" ? "signup" : "login");
               setMessage("");
             }}
-            className="login-switch hover:text-white"
+            className="text-violet-300 hover:text-violet-200"
           >
             {mode === "login" ? "Sign up" : "Sign in"}
           </button>

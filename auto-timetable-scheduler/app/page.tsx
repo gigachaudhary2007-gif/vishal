@@ -72,7 +72,7 @@ export default function WelcomePage() {
 
   return (
     <main className={`chronos-welcome${revealed ? " is-revealed" : ""}${reducedMotion ? " is-reduced" : ""}`}>
-      <section id="top" className={`welcome-hero${revealed ? " is-revealed" : ""}${reducedMotion ? " is-reduced" : ""}`} aria-label="Welcome to Chronos">
+      <section className={`welcome-hero${revealed ? " is-revealed" : ""}${reducedMotion ? " is-reduced" : ""}`} aria-label="Welcome to Chronos">
         <video ref={videoRef} className="welcome-video" src={VIDEO_URL} muted playsInline preload="auto" onPlay={(event) => event.currentTarget.setAttribute("data-playing", "true")} onLoadedData={(event) => { try { const video = event.currentTarget; const canvas = document.createElement("canvas"); canvas.width = canvas.height = 1; const context = canvas.getContext("2d"); if (context) { context.drawImage(video, video.videoWidth * 0.03, video.videoHeight * 0.08, video.videoWidth * 0.04, video.videoHeight * 0.04, 0, 0, 1, 1); const [r, g, b] = context.getImageData(0, 0, 1, 1).data; document.documentElement.style.setProperty("--ocean-bg", `rgb(${r}, ${g}, ${b})`); document.documentElement.style.setProperty("--ocean-ghost", `rgb(${Math.min(255,r+9)}, ${Math.min(255,g+13)}, ${Math.min(255,b+18)})`); } } catch { /* Cross-origin video keeps the CSS fallback palette. */ } if (!reducedMotion) void event.currentTarget.play().catch(reveal); }} onTimeUpdate={(event) => updateVideo(event.currentTarget)} onEnded={reveal} onError={reveal} />
         <div className="hero-veil" aria-hidden="true" />
         <div className="hero-word" aria-hidden="true">CHRONOS</div>
