@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./redesign.css";
+import "./interior-redesign.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chronos | Timetable Studio",
-  description: "Plan courses and generate a weekly academic timetable.",
+  title: "Chronos | Your campus, in sync",
+  description:
+    "Build a clear weekly timetable around your courses, campus rooms, and preferences.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

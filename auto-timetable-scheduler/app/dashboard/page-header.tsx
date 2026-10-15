@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import styles from "./page-header.module.css";
 
 type DashboardPageHeaderProps = {
@@ -8,6 +9,7 @@ type DashboardPageHeaderProps = {
   controls?: ReactNode;
   metadata?: ReactNode;
   actions?: ReactNode;
+  visualSrc?: string;
 };
 
 export default function DashboardPageHeader({
@@ -17,6 +19,7 @@ export default function DashboardPageHeader({
   controls,
   metadata,
   actions,
+  visualSrc = "/images/lecture-hall.jpg",
 }: DashboardPageHeaderProps) {
   return (
     <header className={styles.container} aria-labelledby="dashboard-page-title">
@@ -27,6 +30,25 @@ export default function DashboardPageHeader({
         </h1>
         <p className={styles.description}>{description}</p>
         {controls && <div className={styles.controls}>{controls}</div>}
+      </div>
+
+      <div className={styles.visual} aria-hidden="true">
+        <div className={styles.visualCaption}>
+          <span className={styles.visualDot} />
+          CAMPUS, IN VIEW
+        </div>
+        <Image
+          className={styles.photo}
+          src={visualSrc}
+          alt=""
+          fill
+          sizes="(max-width: 760px) 100vw, 45vw"
+          priority
+        />
+        <div className={styles.visualBadge}>
+          <span>5</span>
+          <small>days<br />at a glance</small>
+        </div>
       </div>
 
       {(metadata || actions) && (

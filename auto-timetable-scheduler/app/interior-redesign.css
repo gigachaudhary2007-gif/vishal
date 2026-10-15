@@ -1,0 +1,228 @@
+/* Workspace views use a focused teal system. Overview stays intentionally untouched. */
+.dashboard-shell--interior {
+  --workspace-ink: #183c42;
+  --workspace-muted: #526a70;
+  --workspace-line: #d7e6e5;
+  --workspace-teal: #0d9488;
+  --workspace-teal-dark: #0b6f68;
+  --workspace-mist: #eef8f6;
+  background:
+    radial-gradient(ellipse at 94% 4%, rgb(20 184 166 / 10%), transparent 26%),
+    linear-gradient(180deg, #f5fbfa 0%, #edf4f3 100%);
+  color: var(--workspace-ink);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+.dashboard-shell--interior .liquid-sidebar {
+  border-color: #d8e7e5 !important;
+  background: linear-gradient(165deg, rgb(255 255 255 / 96%), rgb(241 249 247 / 94%)) !important;
+  box-shadow: 0 18px 44px rgb(21 71 73 / 9%), inset 0 1px 0 #fff !important;
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+.dashboard-shell--interior .desktop-sidebar > div:first-child > div:first-child,
+.dashboard-shell--interior main .top-header > div:first-child > div:first-child {
+  background: linear-gradient(145deg, #0d9488, #38b2a2) !important;
+  box-shadow: 0 8px 20px rgb(13 148 136 / 22%) !important;
+}
+.dashboard-shell--interior .desktop-sidebar nav button {
+  min-height: 46px;
+  color: #48656a !important;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease !important;
+}
+.dashboard-shell--interior .desktop-sidebar nav button[aria-current="page"] {
+  border-color: #c6e7e2 !important;
+  background: linear-gradient(105deg, #ddf4ef, #effaf7) !important;
+  box-shadow: inset 3px 0 #0d9488, 0 5px 14px rgb(13 148 136 / 8%) !important;
+  color: #096b64 !important;
+}
+.dashboard-shell--interior .desktop-sidebar nav button[aria-current="page"] svg { color: #0d9488 !important; }
+.dashboard-shell--interior .desktop-sidebar nav button:not([aria-current="page"]):hover {
+  transform: translateX(2px);
+  background: #eaf5f3 !important;
+  color: #164e4a !important;
+}
+.dashboard-shell--interior .desktop-sidebar [class*="text-white"] { color: #405e63 !important; }
+.dashboard-shell--interior .desktop-sidebar [class~="text-white/50"],
+.dashboard-shell--interior .desktop-sidebar [class~="text-white/45"] { color: #6e8588 !important; }
+.dashboard-shell--interior .desktop-sidebar > div:last-child { border-color: #d7e6e5 !important; }
+.dashboard-shell--interior .desktop-sidebar .sidebar-robot-hint { border-color: #d2e6e2; background: rgb(255 255 255 / 88%); color: #49676b; }
+
+.dashboard-shell--interior main .top-header,
+.dashboard-shell--interior main .mobile-navigation {
+  border-color: rgb(207 227 224 / 92%) !important;
+  background: rgb(255 255 255 / 90%) !important;
+  background-image: linear-gradient(115deg, rgb(255 255 255 / 97%), rgb(241 250 248 / 91%)) !important;
+  box-shadow: 0 9px 26px rgb(18 70 70 / 7%), inset 0 1px 0 #fff !important;
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+}
+.dashboard-shell--interior main .top-header { min-height: 74px !important; }
+.dashboard-shell--interior main .top-header button {
+  min-height: 42px;
+  border-color: #d7e6e5 !important;
+  background: #fff !important;
+  color: #3d6064 !important;
+}
+.dashboard-shell--interior main .top-header button:hover {
+  border-color: #81c9bd !important;
+  background: #eff9f7 !important;
+  color: #08776e !important;
+}
+.dashboard-shell--interior main .top-header button:focus-visible,
+.dashboard-shell--interior .desktop-sidebar nav button:focus-visible,
+.dashboard-shell--interior main .mobile-navigation button:focus-visible,
+.dashboard-shell--interior main button:focus-visible,
+.dashboard-shell--interior main a:focus-visible,
+.dashboard-shell--interior main input:focus-visible,
+.dashboard-shell--interior main select:focus-visible {
+  outline: 3px solid rgb(13 148 136 / 38%) !important;
+  outline-offset: 2px;
+}
+.dashboard-shell--interior main .mobile-navigation {
+  grid-template-columns: repeat(6, minmax(58px, 1fr));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.dashboard-shell--interior main .mobile-navigation::-webkit-scrollbar { display: none; }
+.dashboard-shell--interior main .mobile-navigation button {
+  min-height: 48px;
+  color: #557176 !important;
+  font-size: 10px !important;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease !important;
+}
+.dashboard-shell--interior main .mobile-navigation button[aria-current="page"] {
+  background: linear-gradient(120deg, #087f77, #11a295) !important;
+  color: #fff !important;
+  box-shadow: 0 5px 14px rgb(13 148 136 / 24%), inset 0 1px 0 rgb(255 255 255 / 20%) !important;
+}
+
+/* Interior page banner: image and copy remain legible at every breakpoint. */
+.dashboard-shell--interior main .page-content-stage > header {
+  min-height: 270px;
+  border-color: #cfe2df;
+  background:
+    radial-gradient(ellipse at 0% 0%, rgb(178 234 223 / 45%), transparent 46%),
+    linear-gradient(125deg, #fff 0%, #f2fbf9 58%, #e6f4f1 100%);
+  box-shadow: 0 16px 40px rgb(24 75 74 / 8%), inset 0 1px 0 #fff;
+  color: #173f43;
+}
+.dashboard-shell--interior main .page-content-stage > header h1 { color: #145d5a; text-shadow: none; }
+.dashboard-shell--interior main .page-content-stage > header p { color: #526b70; }
+.dashboard-shell--interior main .page-content-stage > header p:first-child { color: #087b72; }
+.dashboard-shell--interior main .page-content-stage > header > div:last-child { color: #3f6669; }
+
+/* Content surfaces, editable data, and feedback states. */
+.dashboard-shell--interior main .page-content-stage section,
+.dashboard-shell--interior main .page-content-stage .dashboard-feature-card,
+.dashboard-shell--interior main .page-content-stage .scroll-reveal[class*="rounded-2xl"][class*="border"] {
+  border-color: var(--workspace-line) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 9px 25px rgb(22 71 73 / 6%), inset 0 1px 0 rgb(255 255 255 / 92%) !important;
+}
+.dashboard-shell--interior main .page-content-stage .dashboard-feature-card {
+  background: linear-gradient(145deg, #fff 0%, #f9fdfc 100%) !important;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease !important;
+  animation: interior-card-enter 420ms cubic-bezier(.2,.75,.25,1) both;
+}
+.dashboard-shell--interior main .page-content-stage .dashboard-feature-card:hover {
+  transform: translateY(-2px);
+  border-color: #a8d7ce !important;
+  box-shadow: 0 15px 32px rgb(22 71 73 / 10%), inset 0 1px 0 #fff !important;
+}
+.dashboard-shell--interior main .page-content-stage h2,
+.dashboard-shell--interior main .page-content-stage h3 { color: #21484c !important; }
+.dashboard-shell--interior main .page-content-stage p,
+.dashboard-shell--interior main .page-content-stage label { color: #526a70; }
+.dashboard-shell--interior main .page-content-stage [class*="text-[#999"],
+.dashboard-shell--interior main .page-content-stage [class*="text-[#888"],
+.dashboard-shell--interior main .page-content-stage [class*="text-[#aaaa"],
+.dashboard-shell--interior main .page-content-stage [class*="text-[#777"] { color: #60777c !important; }
+.dashboard-shell--interior main .page-content-stage table thead tr { background: #f1f8f7 !important; }
+.dashboard-shell--interior main .page-content-stage table th {
+  color: #4c696d !important;
+  font-size: 11px !important;
+  letter-spacing: .1em;
+}
+.dashboard-shell--interior main .page-content-stage table tbody tr { border-color: #e6efed !important; }
+.dashboard-shell--interior main .page-content-stage table tbody tr:hover { background: #f3faf8 !important; }
+.dashboard-shell--interior main .page-content-stage input,
+.dashboard-shell--interior main .page-content-stage select,
+.dashboard-shell--interior main .page-content-stage textarea {
+  min-height: 42px;
+  border-color: #cbdedb !important;
+  border-radius: 11px !important;
+  background-color: #fff !important;
+  color: #24484c !important;
+  font-size: 14px !important;
+}
+.dashboard-shell--interior main .page-content-stage input::placeholder,
+.dashboard-shell--interior main .page-content-stage textarea::placeholder { color: #71878a !important; opacity: 1; }
+.dashboard-shell--interior main .page-content-stage button {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease !important;
+}
+.dashboard-shell--interior main .page-content-stage button:hover:not(:disabled) { box-shadow: 0 5px 14px rgb(18 90 82 / 10%); }
+.dashboard-shell--interior main .page-content-stage button:active:not(:disabled) { transform: translateY(1px); }
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#242424]"],
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#252523]"],
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#ff8a24]"] {
+  border-color: transparent !important;
+  background: linear-gradient(115deg, #087f77, #0d9488) !important;
+  color: #fff !important;
+}
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#242424]"]:hover,
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#252523]"]:hover,
+.dashboard-shell--interior main .page-content-stage button[class*="bg-[#ff8a24]"]:hover { background: #086d66 !important; }
+
+/* Authentication shares the campus teal identity while retaining its focused form layout. */
+.login-screen {
+  background:
+    radial-gradient(ellipse at 12% 10%, rgb(38 178 160 / 26%), transparent 34%),
+    radial-gradient(ellipse at 92% 92%, rgb(23 98 102 / 32%), transparent 35%),
+    linear-gradient(145deg, #0c2632, #102f3b 56%, #143d46) !important;
+}
+.login-story {
+  border-color: rgb(185 235 225 / 18%) !important;
+  background: linear-gradient(145deg, rgb(18 63 70 / 80%), rgb(17 49 62 / 87%)) !important;
+  box-shadow: 0 28px 80px rgb(0 16 24 / 24%), inset 0 1px 0 rgb(255 255 255 / 12%) !important;
+}
+.login-mark { background: linear-gradient(145deg, #0d9488, #35b9a8) !important; }
+.login-story-kicker,.login-brand,.login-switch { color: #74d9c9 !important; }
+.login-story-title em { color: #84e0cf !important; }
+.login-card {
+  border-color: rgb(186 232 223 / 24%) !important;
+  background: linear-gradient(145deg, rgb(20 62 71 / 97%), rgb(17 49 62 / 98%)) !important;
+  box-shadow: 0 30px 90px rgb(0 16 24 / 36%), inset 0 1px 0 rgb(255 255 255 / 10%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  backdrop-filter: blur(22px) saturate(135%);
+}
+.login-field { color: #f0f8f6 !important; font-size: 13px !important; }
+.login-field input { min-height: 48px; border-color: rgb(194 232 223 / 25%) !important; background: rgb(5 31 40 / 46%) !important; }
+.login-field input:focus { border-color: #61cdbb !important; box-shadow: 0 0 0 3px rgb(74 198 177 / 18%) !important; }
+.login-secondary { min-height: 48px; border-color: rgb(194 232 223 / 26%) !important; background: rgb(255 255 255 / 6%) !important; }
+.login-secondary:hover:not(:disabled) { border-color: rgb(116 217 201 / 62%) !important; background: rgb(255 255 255 / 10%) !important; }
+.login-primary { min-height: 48px; background: linear-gradient(110deg, #0d9488, #25ae9f) !important; box-shadow: 0 10px 24px rgb(13 148 136 / 27%) !important; }
+.login-primary:hover:not(:disabled) { filter: brightness(1.08); box-shadow: 0 14px 28px rgb(13 148 136 / 34%) !important; }
+.login-divider { color: #b5cccb !important; }
+.login-status { border-color: rgb(116 217 201 / 34%) !important; background: rgb(116 217 201 / 10%) !important; }
+.login-screen button:focus-visible,.login-screen input:focus-visible { outline: 3px solid rgb(116 217 201 / 55%); outline-offset: 3px; }
+
+@keyframes interior-card-enter { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 640px) {
+  .dashboard-shell--interior main .page-content-stage { padding-inline: .9rem !important; }
+  .dashboard-shell--interior main .page-content-stage > header { min-height: 0; }
+  .dashboard-shell--interior main .page-content-stage .dashboard-feature-card { border-radius: 17px !important; }
+  .dashboard-shell--interior main .page-content-stage input,
+  .dashboard-shell--interior main .page-content-stage select { font-size: 16px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-shell--interior *,
+  .dashboard-shell--interior *::before,
+  .dashboard-shell--interior *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

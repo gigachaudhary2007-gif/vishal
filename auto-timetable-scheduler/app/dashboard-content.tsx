@@ -2,6 +2,7 @@
 "use client";
 
 import LogoutButton from "@/components/logout-button";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import gsap from "gsap";
@@ -241,37 +242,38 @@ const PAGE_CONTENT: Record<
   { eyebrow: string; title: string; description: string }
 > = {
   Overview: {
-    eyebrow: "ACADEMIC PLANNER",
-    title: "Your academic week",
+    eyebrow: "YOUR CAMPUS, IN SYNC",
+    title: "Your week, in rhythm",
     description:
-      "A clear view of your courses, teaching load, and weekly schedule.",
+      "Bring classes, rooms, and the time between them into one clear plan.",
   },
   Timetable: {
-    eyebrow: "WEEKLY SCHEDULE",
-    title: "Timetable",
+    eyebrow: "A CLEARER WEEK",
+    title: "Your weekly timetable",
     description:
-      "Review your classes by day and period, including assigned faculty and rooms.",
+      "See every class, room, and faculty assignment at a glance.",
   },
   Courses: {
-    eyebrow: "COURSE MANAGEMENT",
-    title: "Courses",
+    eyebrow: "COURSE CATALOGUE",
+    title: "Your courses",
     description:
-      "Manage course names, weekly periods, faculty, and classroom assignments.",
+      "Set course hours and assignments once. Chronos keeps the week organised.",
   },
   Faculty: {
-    eyebrow: "ACADEMIC DIRECTORY",
-    title: "Faculty overview",
-    description: "Review faculty members and their current course assignments.",
+    eyebrow: "PEOPLE BEHIND THE PLAN",
+    title: "Teaching team",
+    description: "Keep faculty assignments easy to find and simple to review.",
   },
   Rooms: {
-    eyebrow: "CAMPUS DIRECTORY",
-    title: "Room directory",
-    description: "Review rooms and the courses currently assigned to each one.",
+    eyebrow: "SPACE FOR EVERY CLASS",
+    title: "Campus rooms",
+    description: "See where courses meet and keep room assignments in order.",
   },
   Constraints: {
-    eyebrow: "SCHEDULING PREFERENCES",
-    title: "Preferences",
-    description: "Set availability and preferred class windows to guide scheduling.",
+    eyebrow: "MAKE THE PLAN FIT",
+    title: "Your preferences",
+    description:
+      "Set availability and preferred class windows before building your schedule.",
   },
 };
 
@@ -1702,7 +1704,7 @@ export default function Home() {
         }
       `}</style>
       <div
-        className="dashboard-shell chronos-shell relative isolate flex min-h-screen gap-5 p-3 sm:gap-6 sm:p-5"
+        className={`dashboard-shell chronos-shell relative isolate flex min-h-screen gap-5 p-3 sm:gap-6 sm:p-5 ${activePage !== "Overview" ? "dashboard-shell--interior" : ""}`}
       >
         {fluidSmokeReady && (
           <div
@@ -1980,18 +1982,31 @@ export default function Home() {
             <DashboardPageHeader
               eyebrow={
                 activePage === "Overview"
-                  ? "YOUR PERSONAL PLANNER"
+                  ? "YOUR CAMPUS, IN SYNC"
                   : pageContent.eyebrow
               }
               title={
                 activePage === "Overview"
-                  ? `${currentTime ? (currentTime.getHours() < 12 ? "Good morning" : currentTime.getHours() < 18 ? "Good afternoon" : "Good evening") : "Welcome"}, Student`
+                  ? `${currentTime ? (currentTime.getHours() < 12 ? "Good morning" : currentTime.getHours() < 18 ? "Good afternoon" : "Good evening") : "Welcome"}`
                   : pageContent.title
               }
               description={
                 activePage === "Overview"
-                  ? "A clear plan for your classes, with room to focus between them."
+                  ? "Your classes, rooms, and open time—together in one clear plan."
                   : pageContent.description
+              }
+              visualSrc={
+                activePage === "Overview"
+                  ? undefined
+                  : activePage === "Timetable"
+                    ? "/images/library-study.jpg"
+                    : activePage === "Courses"
+                      ? "/images/lecture-hall.jpg"
+                      : activePage === "Faculty"
+                        ? "/images/campus-study.jpg"
+                        : activePage === "Rooms"
+                          ? "/images/lecture-hall.jpg"
+                          : "/images/library-study.jpg"
               }
               controls={
                 activePage === "Courses" ? (
@@ -2350,14 +2365,14 @@ export default function Home() {
                         data-scroll-reveal-item
                         className="mt-4 text-base font-semibold"
                       >
-                        A little more breathing room
+                        A little room to breathe
                       </h3>
                       <p
                         data-scroll-reveal-item
                         className="mt-2 max-w-sm text-sm leading-6 text-white/55"
                       >
-                        Your generated classes run Monday through Friday. Use
-                        the arrows to browse your scheduled weekdays.
+                        Classes run Monday through Friday. Use the arrows to
+                        explore each day of your schedule.
                       </p>
                     </div>
                   ) : filteredDateEntries.length === 0 ? (
@@ -2500,7 +2515,7 @@ export default function Home() {
                         {agendaPosition !== null
                           ? "Current time"
                           : isShowingToday
-                            ? "The live marker appears between 9 AM and 4 PM."
+                            ? "Your live day marker appears during class hours."
                             : "Showing your selected day."}
                       </p>
                     </div>
@@ -2508,87 +2523,99 @@ export default function Home() {
                 </section>
 
                 <div className="dashboard-feature-grid grid grid-cols-1 gap-5 md:grid-cols-2">
-                  <section className="feature-card dashboard-feature-card dashboard-feature-card--next flex min-h-[154px] items-center gap-4 rounded-[22px] border border-[#e9e1d5] bg-[#fffdf8] p-5 shadow-[0_8px_24px_rgba(45,38,28,0.045)] sm:p-6">
-                    <div data-scroll-reveal-icon className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#fff0df] text-[#c75d12]">
-                      <Clock3 size={21} />
+                  <section className="feature-card dashboard-feature-card dashboard-feature-card--next dashboard-photo-card min-h-[174px] rounded-[22px] border border-[#e9e1d5] bg-[#fffdf8] p-3 shadow-[0_8px_24px_rgba(45,38,28,0.045)] sm:p-3.5">
+                    <div className="dashboard-photo-copy flex min-w-0 items-center gap-3 px-2 py-2 sm:gap-4 sm:px-3">
+                      <div data-scroll-reveal-icon className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#dff5f0] text-[#168b7c]">
+                        <Clock3 size={20} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p data-scroll-reveal-item className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#71878a]">
+                          Up next
+                        </p>
+                        {nextEntry ? (
+                          <>
+                            <h2 data-scroll-reveal-item className="mt-2 truncate text-base font-semibold text-[#203b45]">
+                              {nextEntry.course}
+                            </h2>
+                            <p data-scroll-reveal-item className="mt-1 truncate text-xs text-[#65797d]">
+                              {DAYS[getDayIndex(nextEntry.day_name ?? nextEntry.day)]}
+                              {" · "}
+                              {PERIODS[Number(nextEntry.slot)]}
+                              {nextEntry.room ? ` · ${nextEntry.room}` : ""}
+                            </p>
+                          </>
+                        ) : (
+                          <>
+                            <h2 data-scroll-reveal-item className="mt-2 text-base font-semibold text-[#203b45]">
+                              No upcoming classes
+                            </h2>
+                            <p data-scroll-reveal-item className="mt-1 text-xs text-[#65797d]">
+                              Generate a timetable to plan your week.
+                            </p>
+                          </>
+                        )}
+                        <button
+                          onClick={() => openPage("Timetable")}
+                          aria-label="Open full calendar"
+                          data-scroll-reveal-icon
+                          className="mt-3 inline-flex h-8 items-center gap-1.5 rounded-lg border border-[#cfe8e2] bg-white/80 px-2.5 text-[11px] font-semibold text-[#197c72] transition hover:border-[#64b9a8] hover:bg-[#effaf7]"
+                        >
+                          View timetable <ArrowUpRight size={14} />
+                        </button>
+                      </div>
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <p data-scroll-reveal-item className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#a49a8b]">
-                        Up next
-                      </p>
-                      {nextEntry ? (
-                        <>
-                          <h2 data-scroll-reveal-item className="mt-2 truncate text-base font-semibold text-[#292823]">
-                            {nextEntry.course}
-                          </h2>
-                          <p data-scroll-reveal-item className="mt-1 truncate text-xs text-[#777064]">
-                            {DAYS[getDayIndex(nextEntry.day_name ?? nextEntry.day)]}
-                            {" · "}
-                            {PERIODS[Number(nextEntry.slot)]}
-                            {nextEntry.room ? ` · ${nextEntry.room}` : ""}
-                          </p>
-                        </>
-                      ) : (
-                        <>
-                          <h2 data-scroll-reveal-item className="mt-2 text-base font-semibold text-[#292823]">
-                            No upcoming classes
-                          </h2>
-                          <p data-scroll-reveal-item className="mt-1 text-xs text-[#777064]">
-                            Generate a timetable to plan your week.
-                          </p>
-                        </>
-                      )}
+                    <div className="dashboard-photo-wash dashboard-photo-wash--lecture" aria-hidden="true">
+                      <Image src="/images/lecture-hall.jpg" alt="" fill sizes="(max-width: 640px) 34vw, 18vw" />
+                      <span className="dashboard-glass-tag"><span className="dashboard-glass-dot" />On campus</span>
                     </div>
-                    <button
-                      onClick={() => openPage("Timetable")}
-                      aria-label="Open full calendar"
-                      data-scroll-reveal-icon
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#eee5d9] text-[#635c51] transition hover:border-[#ff8a24] hover:text-[#bf5a12]"
-                    >
-                      <ArrowUpRight size={16} />
-                    </button>
                   </section>
 
-                  <section className="feature-card dashboard-feature-card dashboard-feature-card--setup flex min-h-[154px] items-center gap-4 rounded-[22px] border border-[#e9e1d5] bg-[#fffdf8] p-5 shadow-[0_8px_24px_rgba(45,38,28,0.045)] sm:p-6">
-                    <div data-scroll-reveal-icon className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f1eee7] text-[#504a40]">
-                      <Check size={21} />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <p data-scroll-reveal-item className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#a49a8b]">
-                            Course setup
-                          </p>
-                          <p data-scroll-reveal-item className="mt-2 text-base font-semibold text-[#292823]">
-                            {completeCourses} of {courses.length} ready
-                          </p>
+                  <section className="feature-card dashboard-feature-card dashboard-feature-card--setup dashboard-photo-card min-h-[174px] rounded-[22px] border border-[#e9e1d5] bg-[#fffdf8] p-3 shadow-[0_8px_24px_rgba(45,38,28,0.045)] sm:p-3.5">
+                    <div className="dashboard-photo-copy flex min-w-0 items-center gap-3 px-2 py-2 sm:gap-4 sm:px-3">
+                      <div data-scroll-reveal-icon className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#e9e8ff] text-[#655bc4]">
+                        <Check size={20} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p data-scroll-reveal-item className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#71878a]">
+                              Course setup
+                            </p>
+                            <p data-scroll-reveal-item className="mt-2 text-base font-semibold text-[#203b45]">
+                              {completeCourses} of {courses.length} ready
+                            </p>
+                          </div>
+                          <span data-scroll-reveal-item className="text-sm font-semibold text-[#675fc0]">
+                            {setupProgress}%
+                          </span>
                         </div>
-                        <span data-scroll-reveal-item className="text-sm font-semibold text-[#bf5a12]">
-                          {setupProgress}%
-                        </span>
-                      </div>
-                      <div
-                        data-scroll-reveal-item
-                        className="mt-3 h-2 overflow-hidden rounded-full bg-[#eee8de]"
-                        role="progressbar"
-                        aria-label="Course setup progress"
-                        aria-valuenow={setupProgress}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
                         <div
-                          data-scroll-reveal-indicator
-                          className="h-full rounded-full bg-[#ff8a24] transition-[width] duration-500"
-                          style={{ width: `${setupProgress}%` }}
-                        />
+                          data-scroll-reveal-item
+                          className="mt-3 h-2 overflow-hidden rounded-full bg-[#eee8de]"
+                          role="progressbar"
+                          aria-label="Course setup progress"
+                          aria-valuenow={setupProgress}
+                          aria-valuemin={0}
+                          aria-valuemax={100}
+                        >
+                          <div
+                            data-scroll-reveal-indicator
+                            className="h-full rounded-full bg-gradient-to-r from-[#786ee0] to-[#45b9a3] transition-[width] duration-500"
+                            style={{ width: `${setupProgress}%` }}
+                          />
+                        </div>
+                        <button
+                          onClick={() => openPage("Courses")}
+                          data-scroll-reveal-item
+                          className="mt-2 text-[11px] font-medium text-[#197c72] underline decoration-[#9dcfc3] underline-offset-2 hover:text-[#125e57]"
+                        >
+                          Review course details
+                        </button>
                       </div>
-                      <button
-                        onClick={() => openPage("Courses")}
-                        data-scroll-reveal-item
-                        className="mt-2 text-[11px] font-medium text-[#736b5f] underline decoration-[#d1c5b4] underline-offset-2 hover:text-[#bf5a12]"
-                      >
-                        Review course details
-                      </button>
+                    </div>
+                    <div className="dashboard-photo-wash dashboard-photo-wash--library" aria-hidden="true">
+                      <Image src="/images/library-study.jpg" alt="" fill sizes="(max-width: 640px) 34vw, 18vw" />
+                      <span className="dashboard-glass-tag"><span className="dashboard-glass-dot" />Study ready</span>
                     </div>
                   </section>
                 </div>
@@ -3459,15 +3486,13 @@ export default function Home() {
                     <h2 className="mt-4 text-base font-semibold">
                       About scheduling rules
                     </h2>
-                    <p className="mt-2 text-[12px] leading-6 text-[#85867f]">
-                      The backend requires non-empty, unique course names and
-                      faculty and room assignments, schedules each course for
-                      its requested weekly periods, and prevents simultaneous
-                      student-group, faculty, or room conflicts. It also caps
-                      each course&apos;s daily periods based on its weekly
-                      requirement and the number of scheduling days. Your
-                      unavailable times are hard constraints; preferred windows,
-                      breaks, compact days, and course periods are soft goals.
+                    <p className="closing-copy mt-2 text-[12px] leading-6 text-[#85867f]">
+                      Chronos combines course hours, faculty, room assignments,
+                      and your preferences into one workable weekly plan. It
+                      keeps classes from overlapping and balances your week
+                      around the unavailable times and preferred windows you set.
+                      Preview the result, adjust what matters, and keep the
+                      <span className="closing-copy__emphasis"> schedule that fits your campus best.</span>
                     </p>
                     <div className="mt-4 rounded-lg bg-[#faf9f6] px-3.5 py-3">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#92938b]">
